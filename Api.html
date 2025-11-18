@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中医学习平台API接口文档</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .api-section {
+            background-color: #fff;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .api-section h2 {
+            color: #34495e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        .api-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background-color: #fafafa;
+            border-radius: 4px;
+        }
+        .api-item h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .api-path {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .api-method {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        .method-get {
+            background-color: #27ae60;
+        }
+        .method-post {
+            background-color: #3498db;
+        }
+        .method-put {
+            background-color: #f39c12;
+        }
+        .method-delete {
+            background-color: #e74c3c;
+        }
+        .api-description {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .api-params {
+            margin-bottom: 10px;
+        }
+        .api-params h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .api-params table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .api-params th, .api-params td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .api-params th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        .api-response {
+            margin-bottom: 10px;
+        }
+        .api-response h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .response-example {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+        .success-status {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .error-status {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>中医学习平台API接口文档</h1>
+        
+        <!-- 用户管理接口 -->
+        <div class="api-section">
+            <h2>一、用户管理接口</h2>
+            
+            <!-- 用户注册 -->
+            <div class="api-item">
+                <h3>1. 用户注册</h3>
+                <div class="api-path">
+                    <span class="api-method method-post">POST</span>
+                    <span>/api/users/register</span>
+                </div>
+                <div class="api-description">用于用户注册</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>username</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>用户名</td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>密码</td>
+                        </tr>
+                        <tr>
+                            <td>nickname</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>昵称</td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>邮箱</td>
+                        </tr>
+                        <tr>
+                            <td>phone</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>手机号</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "message": "注册成功"
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 400,
+    "message": "用户名已存在"
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 用户登录 -->
+            <div class="api-item">
+                <h3>2. 用户登录</h3>
+                <div class="api-path">
+                    <span class="api-method method-post">POST</span>
+                    <span>/api/users/login</span>
+                </div>
+                <div class="api-description">用于用户登录</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>username</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>用户名</td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>密码</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "message": "登录成功"
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 401,
+    "message": "用户名或密码错误"
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 获取用户信息 -->
+            <div class="api-item">
+                <h3>3. 获取用户信息</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/users/{id}</span>
+                </div>
+                <div class="api-description">根据ID获取用户信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>经典典籍ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "id": 1,
+        "name": "黄帝内经",
+        "author": "佚名",
+        "category": "基础理论",
+        "content": "黄帝内经是中国最早的医学典籍..."
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 根据分类获取经典典籍 -->
+            <div class="api-item">
+                <h3>4. 根据分类获取经典典籍</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/classic-books/category/{category}</span>
+                </div>
+                <div class="api-description">根据分类获取经典典籍</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>典籍分类</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "name": "黄帝内经",
+            "author": "佚名",
+            "category": "基础理论",
+            "content": "黄帝内经是中国最早的医学典籍..."
+        }
+    ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 新增经典典籍 -->
+            <div class="api-item">
+                <h3>5. 新增经典典籍</h3>
+                <div class="api-path">
+                    <span class="api-method method-post">POST</span>
+                    <span>/api/classic-books</span>
+                </div>
+                <div class="api-description">新增经典典籍</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>典籍名称</td>
+                        </tr>
+                        <tr>
+                            <td>author</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>作者</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>分类</td>
+                        </tr>
+                        <tr>
+                            <td>content</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>内容</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 更新经典典籍 -->
+            <div class="api-item">
+                <h3>6. 更新经典典籍</h3>
+                <div class="api-path">
+                    <span class="api-method method-put">PUT</span>
+                    <span>/api/classic-books</span>
+                </div>
+                <div class="api-description">更新经典典籍</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>典籍ID</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>典籍名称</td>
+                        </tr>
+                        <tr>
+                            <td>author</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>作者</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>分类</td>
+                        </tr>
+                        <tr>
+                            <td>content</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>内容</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 删除经典典籍 -->
+            <div class="api-item">
+                <h3>7. 删除经典典籍</h3>
+                <div class="api-path">
+                    <span class="api-method method-delete">DELETE</span>
+                    <span>/api/classic-books/{id}</span>
+                </div>
+                <div class="api-description">根据ID删除经典典籍</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>典籍ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>td>integer</td>
+                            <td>是</td>
+                            <td>用户ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "id": 1,
+        "username": "admin",
+        "nickname": "管理员",
+        "email": "admin@example.com",
+        "phone": "13800138000",
+        "createTime": "2023-01-01 10:00:00",
+        "updateTime": "2023-01-01 10:00:00"
+    }
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 404,
+    "message": "用户不存在"
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 更新用户信息 -->
+            <div class="api-item">
+                <h3>4. 更新用户信息</h3>
+                <div class="api-path">
+                    <span class="api-method method-put">PUT</span>
+                    <span>/api/users</span>
+                </div>
+                <div class="api-description">更新用户信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>用户ID</td>
+                        </tr>
+                        <tr>
+                            <td>nickname</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>昵称</td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>邮箱</td>
+                        </tr>
+                        <tr>
+                            <td>phone</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>手机号</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "message": "更新成功"
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "message": "更新失败"
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 删除用户 -->
+            <div class="api-item">
+                <h3>5. 删除用户</h3>
+                <div class="api-path">
+                    <span class="api-method method-delete">DELETE</span>
+                    <span>/api/users/{id}</span>
+                </div>
+                <div class="api-description">根据ID删除用户</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>用户ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "message": "删除成功"
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "message": "删除失败"
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 中药管理接口 -->
+        <div class="api-section">
+            <h2>二、中药管理接口</h2>
+            
+            <!-- 获取所有中药 -->
+            <div class="api-item">
+                <h3>1. 获取所有中药</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/chinese-medicines</span>
+                </div>
+                <div class="api-description">获取所有中药信息</div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "name": "人参",
+            "pinyin": "renshen",
+            "category": "补虚药",
+            "nature": "温",
+            "taste": "甘、微苦",
+            "meridian": "脾、肺、心、肾",
+            "function": "大补元气，复脉固脱，补脾益肺，生津养血，安神益智"
+        },
+        ...
+    ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分页查询中药 -->
+            <div class="api-item">
+                <h3>2. 分页查询中药</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/chinese-medicines/page</span>
+                </div>
+                <div class="api-description">分页查询中药信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>page</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>页码，默认1</td>
+                        </tr>
+                        <tr>
+                            <td>size</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>每页大小，默认10</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "records": [
+            {
+                "id": 1,
+                "name": "人参",
+                "pinyin": "renshen",
+                "category": "补虚药",
+                "nature": "温",
+                "taste": "甘、微苦",
+                "meridian": "脾、肺、心、肾",
+                "function": "大补元气，复脉固脱，补脾益肺，生津养血，安神益智"
+            }
+        ],
+        "total": 100,
+        "size": 10,
+        "current": 1,
+        "pages": 10
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 根据ID获取中药 -->
+            <div class="api-item">
+                <h3>3. 根据ID获取中药</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/chinese-medicines/{id}</span>
+                </div>
+                <div class="api-description">根据ID获取中药信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>中药ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "id": 1,
+        "name": "人参",
+        "pinyin": "renshen",
+        "category": "补虚药",
+        "nature": "温",
+        "taste": "甘、微苦",
+        "meridian": "脾、肺、心、肾",
+        "function": "大补元气，复脉固脱，补脾益肺，生津养血，安神益智"
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 搜索中药 -->
+            <div class="api-item">
+                <h3>4. 搜索中药</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/chinese-medicines/search</span>
+                </div>
+                <div class="api-description">根据名称或拼音搜索中药</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>keyword</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>搜索关键词</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "name": "人参",
+            "pinyin": "renshen",
+            "category": "补虚药",
+            "nature": "温",
+            "taste": "甘、微苦",
+            "meridian": "脾、肺、心、肾",
+            "function": "大补元气，复脉固脱，补脾益肺，生津养血，安神益智"
+        }
+    ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 新增中药 -->
+            <div class="api-item">
+                <h3>5. 新增中药</h3>
+                <div class="api-path">
+                    <span class="api-method method-post">POST</span>
+                    <span>/api/chinese-medicines</span>
+                </div>
+                <div class="api-description">新增中药信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>中药名称</td>
+                        </tr>
+                        <tr>
+                            <td>pinyin</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>拼音</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>分类</td>
+                        </tr>
+                        <tr>
+                            <td>nature</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>性味</td>
+                        </tr>
+                        <tr>
+                            <td>taste</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>归经</td>
+                        </tr>
+                        <tr>
+                            <td>meridian</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>功效</td>
+                        </tr>
+                        <tr>
+                            <td>function</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>主治</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 更新中药 -->
+            <div class="api-item">
+                <h3>6. 更新中药</h3>
+                <div class="api-path">
+                    <span class="api-method method-put">PUT</span>
+                    <span>/api/chinese-medicines</span>
+                </div>
+                <div class="api-description">更新中药信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>中药ID</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>中药名称</td>
+                        </tr>
+                        <tr>
+                            <td>pinyin</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>拼音</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>分类</td>
+                        </tr>
+                        <tr>
+                            <td>nature</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>性味</td>
+                        </tr>
+                        <tr>
+                            <td>taste</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>归经</td>
+                        </tr>
+                        <tr>
+                            <td>meridian</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>功效</td>
+                        </tr>
+                        <tr>
+                            <td>function</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>主治</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 删除中药 -->
+            <div class="api-item">
+                <h3>7. 删除中药</h3>
+                <div class="api-path">
+                    <span class="api-method method-delete">DELETE</span>
+                    <span>/api/chinese-medicines/{id}</span>
+                </div>
+                <div class="api-description">根据ID删除中药</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>中药ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 方剂管理接口 -->
+        <div class="api-section">
+            <h2>三、方剂管理接口</h2>
+            
+            <!-- 获取所有方剂 -->
+            <div class="api-item">
+                <h3>1. 获取所有方剂</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/prescriptions</span>
+                </div>
+                <div class="api-description">获取所有方剂信息</div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "name": "四君子汤",
+            "pinyin": "sijunzitang",
+            "category": "补益剂",
+            "function": "益气健脾"
+        },
+        ...
+    ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分页查询方剂 -->
+            <div class="api-item">
+                <h3>2. 分页查询方剂</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/prescriptions/page</span>
+                </div>
+                <div class="api-description">分页查询方剂信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>page</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>页码，默认1</td>
+                        </tr>
+                        <tr>
+                            <td>size</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>每页大小，默认10</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "records": [
+            {
+                "id": 1,
+                "name": "四君子汤",
+                "pinyin": "sijunzitang",
+                "category": "补益剂",
+                "function": "益气健脾"
+            }
+        ],
+        "total": 50,
+        "size": 10,
+        "current": 1,
+        "pages": 5
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 根据ID获取方剂 -->
+            <div class="api-item">
+                <h3>3. 根据ID获取方剂</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/prescriptions/{id}</span>
+                </div>
+                <div class="api-description">根据ID获取方剂信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>方剂ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "id": 1,
+        "name": "四君子汤",
+        "pinyin": "sijunzitang",
+        "category": "补益剂",
+        "function": "益气健脾"
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 搜索方剂 -->
+            <div class="api-item">
+                <h3>4. 搜索方剂</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/prescriptions/search</span>
+                </div>
+                <div class="api-description">根据名称或拼音搜索方剂</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>keyword</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>搜索关键词</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "name": "四君子汤",
+            "pinyin": "sijunzitang",
+            "category": "补益剂",
+            "function": "益气健脾"
+        }
+    ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 根据分类获取方剂 -->
+            <div class="api-item">
+                <h3>5. 根据分类获取方剂</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/prescriptions/category/{category}</span>
+                </div>
+                <div class="api-description">根据分类获取方剂</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>方剂分类</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "name": "四君子汤",
+            "pinyin": "sijunzitang",
+            "category": "补益剂",
+            "function": "益气健脾"
+        }
+    ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 新增方剂 -->
+            <div class="api-item">
+                <h3>6. 新增方剂</h3>
+                <div class="api-path">
+                    <span class="api-method method-post">POST</span>
+                    <span>/api/prescriptions</span>
+                </div>
+                <div class="api-description">新增方剂信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>方剂名称</td>
+                        </tr>
+                        <tr>
+                            <td>pinyin</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>拼音</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>分类</td>
+                        </tr>
+                        <tr>
+                            <td>function</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>功效</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 更新方剂 -->
+            <div class="api-item">
+                <h3>7. 更新方剂</h3>
+                <div class="api-path">
+                    <span class="api-method method-put">PUT</span>
+                    <span>/api/prescriptions</span>
+                </div>
+                <div class="api-description">更新方剂信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>方剂ID</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>方剂名称</td>
+                        </tr>
+                        <tr>
+                            <td>pinyin</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>拼音</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>分类</td>
+                        </tr>
+                        <tr>
+                            <td>function</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>功效</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 删除方剂 -->
+            <div class="api-item">
+                <h3>8. 删除方剂</h3>
+                <div class="api-path">
+                    <span class="api-method method-delete">DELETE</span>
+                    <span>/api/prescriptions/{id}</span>
+                </div>
+                <div class="api-description">根据ID删除方剂</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>方剂ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 脉诊管理接口 -->
+        <div class="api-section">
+            <h2>四、脉诊管理接口</h2>
+            
+            <!-- 获取所有脉象 -->
+            <div class="api-item">
+                <h3>1. 获取所有脉象</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/pulse-diagnosis</span>
+                </div>
+                <div class="api-description">获取所有脉象信息</div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "name": "浮脉",
+            "description": "轻取即得，重按稍减而不空，举之有余，按之不足"
+        },
+        ...
+    ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分页查询脉象 -->
+            <div class="api-item">
+                <h3>2. 分页查询脉象</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/pulse-diagnosis/page</span>
+                </div>
+                <div class="api-description">分页查询脉象信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>page</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>页码，默认1</td>
+                        </tr>
+                        <tr>
+                            <td>size</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>每页大小，默认10</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "records": [
+            {
+                "id": 1,
+                "name": "浮脉",
+                "description": "轻取即得，重按稍减而不空，举之有余，按之不足"
+            }
+        ],
+        "total": 28,
+        "size": 10,
+        "current": 1,
+        "pages": 3
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 根据ID获取脉象 -->
+            <div class="api-item">
+                <h3>3. 根据ID获取脉象</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/pulse-diagnosis/{id}</span>
+                </div>
+                <div class="api-description">根据ID获取脉象信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>脉象ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "id": 1,
+        "name": "浮脉",
+        "description": "轻取即得，重按稍减而不空，举之有余，按之不足"
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 新增脉象 -->
+            <div class="api-item">
+                <h3>4. 新增脉象</h3>
+                <div class="api-path">
+                    <span class="api-method method-post">POST</span>
+                    <span>/api/pulse-diagnosis</span>
+                </div>
+                <div class="api-description">新增脉象信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>脉象名称</td>
+                        </tr>
+                        <tr>
+                            <td>description</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>脉象描述</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 更新脉象 -->
+            <div class="api-item">
+                <h3>5. 更新脉象</h3>
+                <div class="api-path">
+                    <span class="api-method method-put">PUT</span>
+                    <span>/api/pulse-diagnosis</span>
+                </div>
+                <div class="api-description">更新脉象信息</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>脉象ID</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>脉象名称</td>
+                        </tr>
+                        <tr>
+                            <td>description</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>脉象描述</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 删除脉象 -->
+            <div class="api-item">
+                <h3>6. 删除脉象</h3>
+                <div class="api-path">
+                    <span class="api-method method-delete">DELETE</span>
+                    <span>/api/pulse-diagnosis/{id}</span>
+                </div>
+                <div class="api-description">根据ID删除脉象</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>脉象ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 舌诊管理接口 -->
+        <div class="api-section">
+            <h2>五、舌诊管理接口</h2>
+            
+            <!-- 获取所有舌诊记录 -->
+            <div class="api-item">
+                <h3>1. 获取所有舌诊记录</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/tongue-diagnosis</span>
+                </div>
+                <div class="api-description">获取所有舌诊记录</div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "tongueColor": "红色",
+            "tongueCoating": "黄苔",
+            "description": "舌红苔黄，主热证"
+        },
+        ...
+    ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分页查询舌诊记录 -->
+            <div class="api-item">
+                <h3>2. 分页查询舌诊记录</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/tongue-diagnosis/page</span>
+                </div>
+                <div class="api-description">分页查询舌诊记录</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>page</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>页码，默认1</td>
+                        </tr>
+                        <tr>
+                            <td>size</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>每页大小，默认10</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "records": [
+            {
+                "id": 1,
+                "tongueColor": "红色",
+                "tongueCoating": "黄苔",
+                "description": "舌红苔黄，主热证"
+            }
+        ],
+        "total": 15,
+        "size": 10,
+        "current": 1,
+        "pages": 2
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 根据ID获取舌诊记录 -->
+            <div class="api-item">
+                <h3>3. 根据ID获取舌诊记录</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/tongue-diagnosis/{id}</span>
+                </div>
+                <div class="api-description">根据ID获取舌诊记录</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>舌诊ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "id": 1,
+        "tongueColor": "红色",
+        "tongueCoating": "黄苔",
+        "description": "舌红苔黄，主热证"
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 新增舌诊记录 -->
+            <div class="api-item">
+                <h3>4. 新增舌诊记录</h3>
+                <div class="api-path">
+                    <span class="api-method method-post">POST</span>
+                    <span>/api/tongue-diagnosis</span>
+                </div>
+                <div class="api-description">新增舌诊记录</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>tongueColor</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>舌质颜色</td>
+                        </tr>
+                        <tr>
+                            <td>tongueCoating</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>舌苔</td>
+                        </tr>
+                        <tr>
+                            <td>description</td>
+                            <td>string</td>
+                            <td>是</td>
+                            <td>诊断描述</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 更新舌诊记录 -->
+            <div class="api-item">
+                <h3>5. 更新舌诊记录</h3>
+                <div class="api-path">
+                    <span class="api-method method-put">PUT</span>
+                    <span>/api/tongue-diagnosis</span>
+                </div>
+                <div class="api-description">更新舌诊记录</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>舌诊ID</td>
+                        </tr>
+                        <tr>
+                            <td>tongueColor</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>舌质颜色</td>
+                        </tr>
+                        <tr>
+                            <td>tongueCoating</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>舌苔</td>
+                        </tr>
+                        <tr>
+                            <td>description</td>
+                            <td>string</td>
+                            <td>否</td>
+                            <td>诊断描述</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 删除舌诊记录 -->
+            <div class="api-item">
+                <h3>6. 删除舌诊记录</h3>
+                <div class="api-path">
+                    <span class="api-method method-delete">DELETE</span>
+                    <span>/api/tongue-diagnosis/{id}</span>
+                </div>
+                <div class="api-description">根据ID删除舌诊记录</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>舌诊ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": true
+}</pre>
+                    </div>
+                    <div class="response-example error-status">
+                        失败示例：
+                        <pre>{
+    "status": 500,
+    "data": false
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 经典典籍接口 -->
+        <div class="api-section">
+            <h2>六、经典典籍接口</h2>
+            
+            <!-- 获取所有经典典籍 -->
+            <div class="api-item">
+                <h3>1. 获取所有经典典籍</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/classic-books</span>
+                </div>
+                <div class="api-description">获取所有经典典籍</div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": [
+        {
+            "id": 1,
+            "name": "黄帝内经",
+            "author": "佚名",
+            "category": "基础理论",
+            "content": "黄帝内经是中国最早的医学典籍..."
+        },
+        ...
+    ]
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分页查询经典典籍 -->
+            <div class="api-item">
+                <h3>2. 分页查询经典典籍</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/classic-books/page</span>
+                </div>
+                <div class="api-description">分页查询经典典籍</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>page</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>页码，默认1</td>
+                        </tr>
+                        <tr>
+                            <td>size</td>
+                            <td>integer</td>
+                            <td>否</td>
+                            <td>每页大小，默认10</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{
+    "status": 200,
+    "data": {
+        "records": [
+            {
+                "id": 1,
+                "name": "黄帝内经",
+                "author": "佚名",
+                "category": "基础理论",
+                "content": "黄帝内经是中国最早的医学典籍..."
+            }
+        ],
+        "total": 20,
+        "size": 10,
+        "current": 1,
+        "pages": 2
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 根据ID获取经典典籍 -->
+            <div class="api-item">
+                <h3>3. 根据ID获取经典典籍</h3>
+                <div class="api-path">
+                    <span class="api-method method-get">GET</span>
+                    <span>/api/classic-books/{id}</span>
+                </div>
+                <div class="api-description">根据ID获取经典典籍</div>
+                <div class="api-params">
+                    <h4>请求参数</h4>
+                    <table>
+                        <tr>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>是否必填</th>
+                            <th>描述</th>
+                        </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>是</td>
+                            <td>典籍ID</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="api-response">
+                    <h4>返回值</h4>
+                    <div class="response-example success-status">
+                        成功示例：
+                        <pre>{"status": 200, "message": "操作成功"}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
