@@ -20,7 +20,7 @@ public class ChineseMedicine {
     private String channel;
     private String function;
     private String indication;
-    private String usage;
+    private String usageMethod;
     private String caution;
     private String imageUrl;
 }

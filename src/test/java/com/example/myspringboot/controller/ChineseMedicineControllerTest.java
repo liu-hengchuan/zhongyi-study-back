@@ -39,7 +39,7 @@ public class ChineseMedicineControllerTest {
         medicine.setChannel("心、肺、膀胱经");
         medicine.setFunction("发汗解肌，温通经脉，助阳化气");
         medicine.setIndication("风寒感冒，脘腹冷痛，血寒经闭，关节痹痛，痰饮，水肿");
-        medicine.setUsage("煎服，3-10g");
+        medicine.setUsageMethod("煎服，3-10g");
         medicine.setCaution("温热病及阴虚阳盛之证、血证、孕妇忌用");
         medicine.setImageUrl("guizhi.jpg");
     }
@@ -75,7 +75,7 @@ public class ChineseMedicineControllerTest {
 
         mockMvc.perform(post("/api/chinese-medicines")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"桂枝\",\"pinyin\":\"guizhi\",\"Latin\":\"Ramulus Cinnamomi\",\"property\":\"辛、甘，温\",\"channel\":\"心、肺、膀胱经\",\"function\":\"发汗解肌，温通经脉，助阳化气\",\"indication\":\"风寒感冒，脘腹冷痛，血寒经闭，关节痹痛，痰饮，水肿\",\"usage\":\"煎服，3-10g\",\"caution\":\"温热病及阴虚阳盛之证、血证、孕妇忌用\",\"imageUrl\":\"guizhi.jpg\"}"))
+                .content("{\"name\":\"桂枝\",\"pinyin\":\"guizhi\",\"Latin\":\"Ramulus Cinnamomi\",\"property\":\"辛、甘，温\",\"channel\":\"心、肺、膀胱经\",\"function\":\"发汗解肌，温通经脉，助阳化气\",\"indication\":\"风寒感冒，脘腹冷痛，血寒经闭，关节痹痛，痰饮，水肿\",\"usageMethod\":\"煎服，3-10g\",\"caution\":\"温热病及阴虚阳盛之证、血证、孕妇忌用\",\"imageUrl\":\"guizhi.jpg\"}"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
 
@@ -88,7 +88,7 @@ public class ChineseMedicineControllerTest {
 
         mockMvc.perform(put("/api/chinese-medicines")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":1,\"name\":\"桂枝\",\"pinyin\":\"guizhi\",\"Latin\":\"Ramulus Cinnamomi\",\"property\":\"辛、甘，温\",\"channel\":\"心、肺、膀胱经\",\"function\":\"发汗解肌，温通经脉，助阳化气\",\"indication\":\"风寒感冒，脘腹冷痛，血寒经闭，关节痹痛，痰饮，水肿\",\"usage\":\"煎服，3-10g\",\"caution\":\"温热病及阴虚阳盛之证、血证、孕妇忌用\",\"imageUrl\":\"guizhi.jpg\"}"))
+                .content("{\"id\":1,\"name\":\"桂枝\",\"pinyin\":\"guizhi\",\"Latin\":\"Ramulus Cinnamomi\",\"property\":\"辛、甘，温\",\"channel\":\"心、肺、膀胱经\",\"function\":\"发汗解肌，温通经脉，助阳化气\",\"indication\":\"风寒感冒，脘腹冷痛，血寒经闭，关节痹痛，痰饮，水肿\",\"usageMethod\":\"煎服，3-10g\",\"caution\":\"温热病及阴虚阳盛之证、血证、孕妇忌用\",\"imageUrl\":\"guizhi.jpg\"}"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
 
