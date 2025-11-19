@@ -3,13 +3,13 @@ spring:
   application:
     name: seckill-system
   datasource:
-    driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:seckill.db
-    username: 
-    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zhongyi?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
   sql:
     init:
-      schema-locations: classpath:db/schema.sql
+      schema-locations: classpath:schema.sql,classpath:db/schema.sql
       data-locations: classpath:db/data.sql
       mode: always
   jackson:
@@ -43,8 +43,8 @@ mybatis-plus:
       logic-not-delete-value: 0
     banner: false
   # 自动表生成配置
-  schema: classpath*:db/schema.sql
-  data: classpath*:db/data.sql
+#  schema: classpath*:db/schema.sql
+#  data: classpath*:db/data.sql
 
 server:
   port: 8082
